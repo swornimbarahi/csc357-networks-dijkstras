@@ -1,8 +1,5 @@
-def printMaze(maze):
-    for line in maze:
-        for cell in line:
-            print(cell, end="")
-        print("")
+from backtracking import backtracking
+from utils import printMaze
 
 
 def main():
@@ -24,6 +21,8 @@ def main():
         ["#", "#", "#", "#", "#", "E", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
     ]
     printMaze(maze)
+    print("\n\n\n")
+    print(backtracking(maze, [0, 3]))
 
 
 if __name__ == "__main__":

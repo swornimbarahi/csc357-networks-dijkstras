@@ -1,4 +1,6 @@
-def backtracking(maze, start, end):
+from utils import findNearbyFreeCells, printMaze
+
+def backtracking(maze, start):
     stack = []
     stack.append(start)
     while len(stack) != 0:
@@ -16,22 +18,3 @@ def backtracking(maze, start, end):
     return False
 
 
-def findNearbyFreeCells(maze, cell):
-    freeCellList = []
-    if cell[0] > 0 and (
-        maze[cell[0] - 1][cell[1]] == " " or maze[cell[0] - 1][cell[1]] == "E"
-    ):
-        freeCellList.append([cell[0] - 1, cell[1]])
-    if cell[1] > 0 and (
-        maze[cell[0]][cell[1] - 1] == " " or maze[cell[0]][cell[1] - 1] == "E"
-    ):
-        freeCellList.append([cell[0], cell[1] - 1])
-    if cell[0] < len(maze) and (
-        maze[cell[0] + 1][cell[1]] == " " or maze[cell[0] + 1][cell[1]] == "E"
-    ):
-        freeCellList.append([cell[0] + 1, cell[1]])
-    if cell[0] < len(maze[0]) and (
-        maze[cell[0]][cell[1] + 1] == " " or maze[cell[0]][cell[1] + 1] == "E"
-    ):
-        freeCellList.append([cell[0], cell[1] + 1])
-    return freeCellList
