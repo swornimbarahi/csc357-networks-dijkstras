@@ -1,6 +1,5 @@
 from backtracking import backtracking
-from utils import printMaze
-
+from utils import printMaze, checkNode, createAdjacencyList, findNearbyFreeCells
 
 def main():
     maze = [
@@ -20,9 +19,7 @@ def main():
         ["#", " ", "#", "#", "#", " ", "#", "#", "#", "#", " ", "#", "#", "#", "#"],
         ["#", "#", "#", "#", "#", "E", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
     ]
-    printMaze(maze)
-    print("\n\n\n")
-    print(backtracking(maze, [0, 3]))
+    print(createAdjacencyList(maze, (0, 3)))
 
 
 if __name__ == "__main__":
