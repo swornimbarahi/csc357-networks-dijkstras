@@ -1,8 +1,10 @@
-from utils import findNearbyFreeCells, printMaze
+from utils import findNearbyFreeCells, printMaze, cleanMaze
+import copy
 
 def backtracking(maze, start):
     stack = []
     stack.append(start)
+    path = {}
     while len(stack) != 0:
         currCell = stack.pop()
         if (
@@ -11,10 +13,11 @@ def backtracking(maze, start):
         ):
             maze[currCell[0]][currCell[1]] = "."
         elif maze[currCell[0]][currCell[1]] == "E":
-            printMaze(maze)
-            return True
-        stack += findNearbyFreeCells(maze, currCell)
-    printMaze(maze)
-    return False
-
+            break
+        nearbyCells = findNearbyFreeCells(maze, currCell)
+        stack += nearbyCells
+        for cell in nearbyCells:
+            path[(cell[0], cell[1])] = currCell
+    cleanMaze(maze)
+    return path, currCell
 

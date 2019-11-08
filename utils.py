@@ -25,6 +25,12 @@ def printMaze(maze):
             print(cell, end="")
         print("")
 
+def cleanMaze(maze):
+    for i in range(len(maze)):
+        for j in range(len(maze[i])):
+            if maze[i][j] == ".":
+                maze[i][j] = " "
+
 
 def findAllNodes(maze, start):
     nodeList = []
