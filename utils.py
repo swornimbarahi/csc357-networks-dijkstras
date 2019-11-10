@@ -107,6 +107,6 @@ def checkAdjacentNodes(maze, node, neighborCell):
 
 def distanceBetweenTwoNodes(firstNode, secondNode):
     return (
-        (firstNode[0] - secondNode[0]) ** 2 - (firstNode[1] - secondNode[1]) ** 2
+        (firstNode[0] - secondNode[0]) ** 2 + (firstNode[1] - secondNode[1]) ** 2
     ) ** (1 / 2)
 

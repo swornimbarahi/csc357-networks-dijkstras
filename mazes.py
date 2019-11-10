@@ -1,7 +1,10 @@
-def maze(n):
-  if n == 1:
-    return 1
-  if n == 2:
-    return 2
-  if n == 3:
-    return 3
+def mazes(n):
+    mazefile = open("maze" + str(n) + ".txt", "r")
+    matrix = []
+    for lines in mazefile:
+        line = []
+        for cell in lines.strip():
+            line.append(cell)
+        matrix.append(line)
+    return matrix
+

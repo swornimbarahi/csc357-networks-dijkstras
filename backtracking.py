@@ -1,5 +1,4 @@
 from utils import findNearbyFreeCells, printMaze, cleanMaze
-import copy
 
 def backtracking(maze, start):
     stack = []
@@ -19,5 +18,8 @@ def backtracking(maze, start):
         for cell in nearbyCells:
             path[(cell[0], cell[1])] = currCell
     cleanMaze(maze)
-    return path, currCell
+    while currCell != start:
+        currCell = path.get((currCell[0], currCell[1]))
+        maze[currCell[0]][currCell[1]] = "."
+    printMaze(maze)
 
