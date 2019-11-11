@@ -1,6 +1,21 @@
+#!/usr/bin/python3
+
+from typing import List, Tuple, Dict
 from utils import createAdjacencyList, printMaze
 
-def dfs(maze, start):
+
+""" Simple depth first search algorithm to find the route.
+
+    The route it provides is in no way optimized.
+    
+    @param: maze      List of List of strings
+    @param: start     The starting Cell
+
+    @returns: path    The Dict mapping the nextNodes to the previous nodes
+"""
+
+
+def dfs(maze: List[List[str]], start: Tuple[int]) -> Dict[Tuple[int], Tuple[int]]:
     seenSet = set()
     path = {}
     stack = []
@@ -16,9 +31,4 @@ def dfs(maze, start):
                 path[neighbor] = currNode
                 stack.append(neighbor)
                 seenSet.add(neighbor)
-    print(currNode)
-    print(path)
-    while currNode != start:
-      maze[currNode[0]][currNode[1]] = "."
-      currNode = path.get(currNode)
-    printMaze(maze)
+    return path

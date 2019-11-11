@@ -1,8 +1,19 @@
+#!/usr/bin/python3
+
 import sys
+from typing import List, Tuple, Dict
 from utils import printMaze, findAllNodes, createAdjacencyList, distanceBetweenTwoNodes
 
+""" 
+    Return the shortest path according to djikstras algorithm
+    @param: maze      List of List of strings
+    @param: start     The starting Cell
 
-def djikstras(maze, start):
+    @returns: path    The Dict mapping the nextNodes to the previous nodes
+"""
+
+
+def djikstras(maze: List[List[str]], start: Tuple[int]):
     nodeList = findAllNodes(maze, start)
     adjacencyList = createAdjacencyList(maze, start)
     unvisited = set(nodeList)
@@ -18,20 +29,24 @@ def djikstras(maze, start):
         for neighbor in adjacencyList[current]:
             if neighbor in unvisited:
                 alt = distance[current] + distanceBetweenTwoNodes(current, neighbor)
-                print(alt, "====>", distance[neighbor])
                 if alt < distance[neighbor]:
                     distance[neighbor] = alt
                     path[neighbor] = current
-    
-    currNode = (19, 2)
-    while currNode != start:
-      maze[currNode[0]][currNode[1]] = "."
-      currNode = path.get(currNode)
-    printMaze(maze)
     return path
 
 
-def getMin(nodeSet, distanceDict):
+"""
+  Returns the minimum distance node that is present
+  in the node set.
+
+  @param: nodeSet       the Set of nodes to choose from
+  @param: distanceDict  the dictionary of the tentative distances from the source
+
+  @returns: retNode     the node with the minimum distance
+"""
+
+
+def getMin(nodeSet: set, distanceDict: dict):
     minimum = sys.maxsize
     retNode = None
     for node in nodeSet:
