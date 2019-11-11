@@ -47,6 +47,25 @@ def printMaze(maze: List[List[str]]):
 
 
 """
+    Prints the maze in color out in the terminal
+
+    @param: maze    List of List of strings
+"""
+
+
+def printMazeInColor(maze: List[List[str]]):
+    for line in maze:
+        for cell in line:
+            if cell == "#":
+                print("\033[93m{}\033[00m".format(cell), end="")
+            elif cell == ".":
+                print("\033[91m{}\033[00m".format(cell), end="")
+            else:
+                print(cell, end="")
+        print("")
+
+
+"""
     Cleans the maze of any tracks left behind
 
     @param: maze    List of List of strings
@@ -205,9 +224,7 @@ def distanceBetweenTwoNodes(firstNode: Tuple[int], secondNode: Tuple[int]):
 """
 
 
-def connectTwoCells(
-    maze: List[List[str]], currCell: Tuple[int], nextCell: Tuple[int]
-):
+def connectTwoCells(maze: List[List[str]], currCell: Tuple[int], nextCell: Tuple[int]):
     dumNode = [currCell[0], currCell[1]]
     if currCell[0] < nextCell[0]:
         while dumNode[0] != nextCell[0]:

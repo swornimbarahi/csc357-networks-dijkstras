@@ -16,6 +16,7 @@ from bfs import bfs
 from djikstras import djikstras
 from utils import (
     printMaze,
+    printMazeInColor,
     checkNode,
     createAdjacencyList,
     findNearbyFreeCells,
@@ -41,6 +42,9 @@ def main():
         )
     )
 
+    print("\n\nDo you want to get the output in color?")
+    color = input("[Y]es\t\tNo\n")
+
     maze, start, end = mazes(mazeNumber)
 
     if algoPref == 4:
@@ -58,7 +62,10 @@ def main():
         nextNode = path[currNode]
         connectTwoCells(maze, currNode, nextNode)
         currNode = nextNode
-    printMaze(maze)
+    if color == "Y" or color == "y" or color.capitalize() == "Yes":
+        printMazeInColor(maze)
+    else:
+        printMaze(maze)
 
 
 if __name__ == "__main__":
